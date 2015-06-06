@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "flvStore">
+<head>
+<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+<header>
+	  <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="style.css" />
+       <script type="text/javascript" src="angular.min.js"></script>
+       <script type="text/javascript" src="app.js"></script>
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+       </script>
+</header>
+<body ng-controller = "flvStoreController as store">
+	<img src="./images/logo.JPG" alt="logo">
+	<div ng-controller="TabController as tab" class="container">
+	 <ul class="nav nav-pills">
+			<li ng-class="{ active:tab.isSet(1) }">
+				<a href="" ng-click="tab.setTab(1)" class="tb">Create Product</a>
+			</li>
+			<li ng-class="{ active:tab.isSet(2) }">
+				<a href="" ng-click="tab.setTab(2)"  class="tb">List of Products</a>
+			</li>
+	</ul>
+	<!--Formulario para productos-->
+	<div ng-show="tab.isSet(1)" class="border-form-div">
+	   <label>Item name:</label> <INPUT type="text" name="name"
+	   ng-model="formData.name"><BR><BR>
+	   <label>Price:</label> <INPUT type="number" name="price"
+	    ng-model="formData.price"><BR><BR>
+       <label>Shipping:</label> <INPUT type="text" name="shipping" 
+        ng-model="formData.shipping"><BR><BR>
+	   <label>Seller:</label> <INPUT type="text" name="seller" 
+	    ng-model="formData.seller"><BR><BR>
+       <label>Stock:</label> <INPUT type="number" name="stock"
+        ng-model="formData.stock"><BR><BR>
+       <input type="submit" ng-click = "createProduct()" value="Publicar" class ='btn btn-primary'>
+	</div>
+	<div ng-show="tab.isSet(2)" class="list-group">
+		<div class="list-group-item" ng-repeat="product in store.products | orderBy:'-price'">
+			   <h3>Producto #{{$index + 1}}: {{product.name | uppercase}}<em class="pull-right">{{product.price | currency}}</em>
+			   	<em class="pull-right"> {{product.shipping}}</em>
+			   	<em class="pull-right"> {{product.seller}}</em>
+			   <em class="pull-right"> {{product.stock}}</em>
+        </h3>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>
