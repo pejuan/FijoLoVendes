@@ -1,0 +1,34 @@
+{
+  "name": "Product",
+  "plural": "products",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true
+    },
+    "shipping": {
+      "type": "string",
+      "required": true
+    },
+    "seller": {
+      "type": "string"
+    },
+    "stock": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

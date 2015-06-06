@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "Fijolovendes">
+<head>
+	<title>Fijo lo vendes</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-animate.min.js"></script>
+     <script src="app/app.js"></script>
+ </head>
+
+<body ng-controller = "MainCtrl as main">
+	<img src="assets/img/logo.JPG" alt="logo">
+	<div ng-controller="TabController as tab" class="container">
+	 <ul class="nav nav-pills">
+			<li ng-class="{ active:tab.isSet(1) }">
+				<a href="" ng-click="tab.setTab(1)" class="tb">Create Product</a>
+			</li>
+			<li ng-class="{ active:tab.isSet(2) }">
+				<a href="" ng-click="tab.setTab(2)"  class="tb">List of Products</a>
+			</li>
+	</ul>
+	<!--Formulario para productos-->
+	<div ng-show="tab.isSet(1)" class="border-form-div" ng-if="!main.isEditing">
+	 	<form class="create-form" role="form" novalidate>
+	 		<div class="form-group">
+		  		<label>Nombre del Producto:</label> 
+		  		<INPUT type="text" name="name" ng-model="main.newProduct.name">
+    		</div>
+   		 	<div class="form-group">
+	   			<label>Precio:</label>
+	    		<INPUT type="number" name="price" ng-model="main.newProduct.price">
+	 		</div>
+	 		<div class="form-group">
+	 			<label>Shipping:</label> <INPUT type="text" name="shipping" ng-model="main.newProduct.shipping">
+	 		</div>
+      		<div class="form-group">
+	   			<label>Vendedor:</label> <INPUT type="text" name="seller" ng-model="main.newProduct.seller">
+	  		</div>
+	 		 <div class="form-group">
+       			<label>Stock:</label> <INPUT type="number" name="stock" ng-model="main.newProduct.stock">
+       		</div>
+		 	<button type="submit" class="btn btn-primary" ng-submit="main.createProduct(main.newProduct)" >Publicar</button>
+		</form>
+	</div>
+	  
+	<div ng-show="tab.isSet(2)" class="list-group">
+		  <div class="product" ng-repeat="product in main.products"
+            ng-click="main.setEditedProduct(product)"
+            ng-class="{'active':main.isCurrentProduct(product.id)}">
+
+            <button type="button" class="close" ng-click="main.deleteProduct(product.id)">&times;</button>
+                <h3>Producto #{{$index + 1}}: {{product.name | uppercase}}</h3>
+			   <em class="pull-right">{{product.price | currency}}</em>
+			   	<em class="pull-right"> {{product.shipping}}</em>
+			   	<em class="pull-right"> {{product.seller}}</em>
+			   <em class="pull-right"> {{product.stock}}</em>
+          </div>
+
+	</div>
+</div>
+
+   
+</body>
+</html>
