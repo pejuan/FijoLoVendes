@@ -1,7 +1,14 @@
 var express =require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/angular-products');
+var mongoURI = 'mongodb://localhost:27017/angular-products';
+var MongoDB = mongoose.connect(mongoURI).connection;
+MongoDB.on('error', function(err){
+	console.log(err.message);
+});
+MongoDB.once('open', function() {
+  console.log("mongodb connection open");
+});
 app.configure(function(){
 	app.use(express.static(__dirname + '/public'));
 	app.use(express.logger('dev'));
@@ -64,5 +71,5 @@ app.get('*', function(req,res){
 	res.sendfile('./public/index.html');
 });
 app.listen(8080,function(){
-	console.log('App listening on por 8080');
+	console.log('App listening on port 8080');
 });
