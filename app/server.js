@@ -6,7 +6,7 @@ app.configure(function(){
 	app.use(express.static(__dirname + '/public'));
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
-	app.user(express.methodOverride());
+	app.use(express.methodOverride());
 });
 var Product = mongoose.model('Product',{
 	name: String,
@@ -26,7 +26,7 @@ app.get('/api/products',function(req,res){
 	});
 });
 //Post Method
-app/post('/api/products',function(req,res){
+app.post('/api/products',function(req,res){
 	Product.create({
 		text: req.body.text,
 		done: false
@@ -34,7 +34,7 @@ app/post('/api/products',function(req,res){
 		if(err){
 			res.send(err);
 		}
-		Todo.find(function(err, products){
+		Product.find(function(err, products){
 			if(err){
 				res.send(err);
 			}

@@ -1,6 +1,7 @@
 {
 	"name":"angular-product",
-	"version":"0.0.1",
+	"version":"1.0.0",
+	 "private": true,
 	"description":"Simple Angular PRODUCT app based in MEAN stack",
 	"main":"server.js",
 	"dependencies": {
