@@ -9,6 +9,27 @@ set :sessions, true
 get '/login' do
     erb :login_form
 end
+get '/publicar' do
+	erb :formulario
+end
+
+post '/publicar' do
+	item = params[:item]
+	price = params[:price]
+	shipping = params[:shipping]
+	seller = params[:seller]
+	stock = params[:stock]
+	begin
+		conexion = Mysql.new 'localhost', 'flv', 'flv123', 'test'
+		query_publicar = conexion.query "INSERT INTO productos(Item,Price,Shipping,Seller,Stock) VALUES(\'#{item}\',#{price},\'#{shipping}\',\'#{seller}\',#{stock})"
+	rescue Mysql::Error => e
+		puts e.error
+	ensure
+		conexion.close if conexion
+	end
+end
+
+
 post '/login' do
 	name = params[:email]
 	psw = params[:password]
