@@ -1,7 +1,7 @@
 #encoding: utf-8
 require 'rubygems'
 require 'sinatra'
-require 'mysql2'
+require 'mysql'
 require 'digest'
 set :port, 3000
 set :sessions, true
@@ -10,12 +10,12 @@ get '/login' do
     erb :login_form
 end
 post '/login' do
-	name = params[:username]
+	name = params[:email]
 	psw = params[:password]
 	md5 = Digest::MD5.hexdigest(psw)
 	begin  
 	    connection = Mysql.new 'localhost', 'flv', 'flv123', 'test'
-	    query_login = connection.query "SELECT * FROM users WHERE email = \'#{name}\' AND password = \'#{md5}\'"
+	    query_login = connection.query "SELECT * FROM users WHERE email = \'#{name}\' AND password = \'#{psw}\'"
 		if query_login.num_rows == 1  
 			session[:signed_in] = true
 		    "SUCCESS! :)"
