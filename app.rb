@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'mysql'
+require 'mysql2xxxx'
 require 'digest'
 set :port, 3000
 set :sessions, true
@@ -10,7 +11,8 @@ get '/login' do
     erb :login_form
 end
 get '/publicar' do
-	erb :formulario
+	posts = Mysql2xxxx::JSON.new :user => 'flv', :password => 'flv123', :database => 'test', :execute => 'Select * from productos'
+	posts.to_s
 end
 
 post '/publicar' do
