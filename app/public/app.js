@@ -2,6 +2,7 @@
 var app = angular.module('flvStore',[]);
 	app.controller('flvCtrl',['$scope', '$http',function($scope,$http){
 			$scope.product = {};
+			$scope.comment="";
 			 console.log("Hello World from controller");
 			 refresh = function(){
 				$http.get('/products').success(function(data){
@@ -17,6 +18,11 @@ var app = angular.module('flvStore',[]);
 			});
 
 		};
+
+		$scope.createComment =function(){
+		 	$http.post('/api/products', $scope.comment).success(function){
+
+		 });
 
 	}]);
 	app.controller('TabController',function(){
