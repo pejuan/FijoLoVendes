@@ -1,10 +1,10 @@
 
 var app = angular.module('flvStore',[]);
+   
 	app.controller('flvCtrl',['$scope', '$http',function($scope,$http){
 			$scope.product = {};
-			$scope.comment="";
 			 console.log("Hello World from controller");
-			 refresh = function(){
+	    $scope.refresh = function(){
 				$http.get('/products').success(function(data){
 				console.log("I got the data I requested");
 				$scope.products=data;
@@ -18,11 +18,15 @@ var app = angular.module('flvStore',[]);
 			});
 
 		};
+		$scope.getProduct = function(product){
+		   $scope.product = product;
+		};
 
 		$scope.createComment =function(){
-		 	$http.post('/api/products', $scope.comment).success(function){
-
+		 	$http.post('/api/products/'+ $scope.product.id, $scope.product.comment).success(function(response){
+             console.log(response);
 		 });
+		};
 
 	}]);
 	app.controller('TabController',function(){
@@ -31,8 +35,19 @@ var app = angular.module('flvStore',[]);
 			 return this.tab === checkout;
 		};
 		this.setTab = function(number){
-			if(number===2)
-				refresh();
 			this.tab = number;
 		}
 	});
+	 app.controller('loginCtrl',['$scope', '$http',function($scope,$http){
+    	 $scope.user = {};
+    	 $scope.login = function(){
+               $http.post('/users',$scope.user).success(function(response){
+                    console.log(response);
+               });
+    	 };
+    	 $scope.signup = function(){
+    	 	  $http.post('/users',$scope.user).success(function(response){
+                    console.log(response);
+               });     
+    	 };
+    }]);
