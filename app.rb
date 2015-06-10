@@ -11,7 +11,7 @@ id = 0
 get '/login' do
     erb :login_form
 end
-get '/publicar' do
+get '/refresh' do
 	posts = Mysql2xxxx::JSON.new :user => 'flv', :password => 'flv123', :database => 'test', :execute => 'Select * from productos'
 	posts.to_s
 end
@@ -79,7 +79,7 @@ post '/signup' do
  			"Ya existe un usuario con esa direccion de correo."
 		end
 	else
-		"Contraseñas no concuerdan"
+		"Contraseñas no concuerdan."
 	end
 end
 get '/private' do  
@@ -88,6 +88,15 @@ get '/private' do
     else
         "You're welcome :D"
     end
+end
+post '/createComment' do
+	comment = params[:comment]
+	id_prod = params[:id]
+	if session[:signed_in] == true
+		cone = Mysql.new 'localhost', 'flv', 'flv123', 'test'
+		query_comment = cone.query "INSERT INTO comments(comment, id_prod, id_users) VALUES(\'#{comment}\',#{id_prod},#{id})"
+	end
+
 end
 get '/logout' do
     session[:signed_in] = false
