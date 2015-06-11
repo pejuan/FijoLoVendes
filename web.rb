@@ -75,7 +75,7 @@ post '/signup' do
 		con = Mysql.new 'localhost', 'flv', 'flv123', 'test'
 		query_signup1 = con.query "SELECT * FROM users WHERE email = \'#{correo}\'"
 		if query_signup1.num_rows < 1
-			query_signupfinal = con.query "INSERT INTO users(Nombre,Apellido,email,password) VALUES(\'#{nom}\',\'#{apellido}\',\'#{correo}\',\'#{psw1})\')"
+			query_signupfinal = con.query "INSERT INTO users(Nombre,Apellido,email,password) VALUES(\'#{nom}\',\'#{apellido}\',\'#{correo}\',\'#{psw1}\')"
  		else
  			"Ya existe un usuario con esa direccion de correo."
 		end
