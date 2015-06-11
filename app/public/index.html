@@ -25,7 +25,7 @@
 	</ul>
 	<!--Formulario para productos-->
 	<div ng-show="tab.isSet(1)" class="border-form-div">
-	   <label>Nombre:</label> <input class="form-control" ng-model="product.name"><BR><BR>
+	   <label>Nombre:</label> <input class="form-control" ng-model="product.item"><BR><BR>
 	   <label>Precio:</label> <input class="form-control" ng-model="product.price"><BR><BR>
        <label>Shipping:</label> <input class="form-control"ng-model="product.shipping"><BR>
 	   <label>Vendedor:</label> <input class="form-control" ng-model="product.seller">
@@ -47,7 +47,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="product in products | orderBy:'-price'">
-				<td>{{product.name}}</td>
+				<td>{{product.item}}</td>
 				<td>{{product.price | currency}}</td>
  				<td>{{product.shipping}}</td>
 				<td>{{product.seller}}</td>
@@ -59,7 +59,7 @@
 	
    </div>
    <div ng-show="tab.isSet(3)" class="border-form-div" >
-      <label>Nombre</label> {{product.name}}<br>
+      <label>Nombre</label> {{product.item}}<br>
       <label>Precio</label> {{product.price}}<br>
       <label>Shipping</label> {{product.shipping}}<br>
       <label>Vendedor</label> {{product.seller}}<br>

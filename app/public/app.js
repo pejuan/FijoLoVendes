@@ -1,7 +1,8 @@
 
 var app = angular.module('flvStore',[]);
-   
+    
 	app.controller('flvCtrl',['$scope', '$http',function($scope,$http){
+
 			$scope.product = {};
 			 console.log("Hello World from controller");
 	    $scope.refresh = function(){
@@ -40,9 +41,16 @@ var app = angular.module('flvStore',[]);
 	});
 	 app.controller('loginCtrl',['$scope', '$http',function($scope,$http){
     	 $scope.user = {};
+    	 $scope.message = "";
     	 $scope.login = function(){
                $http.post('/users',$scope.user).success(function(response){
                     console.log(response);
+                    if(response === "ERROR - Internal error, please contact webmaster." ||
+                    	response === "ERROR - Invalid username and / or password."){
+                    	$scope.message = response;
+               	 	}else{
+                        $window.location.href= "#index";
+                	}
                });
     	 };
     	 $scope.signup = function(){
