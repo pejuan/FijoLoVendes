@@ -1,7 +1,8 @@
 source "https://rubygems.org"
-ruby "2.0.0"
+ruby "2.2.2"
 
-gem 'sinatra', '1.1.0'
+gem 'sinatra'
 gem 'mysql'
 gem 'mysql2xxxx'
 gem 'digest'
+gem 'iconv'

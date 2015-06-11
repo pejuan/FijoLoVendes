@@ -4,6 +4,7 @@ require 'sinatra'
 require 'mysql'
 require 'mysql2xxxx'
 require 'digest'
+require 'iconv'
 set :port, 3000
 set :sessions, true
 
