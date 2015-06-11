@@ -77,3 +77,6 @@ body{
  	color: #8AC007;
  	background-color: #ffffff;
  }
+ .form-control {
+ 	width: 250px;
+ }

@@ -20,12 +20,12 @@
 				<a href="" ng-click="tab.setTab(1)" class="tb">Publicar un Producto</a>
 			</li>
 			<li ng-class="{ active:tab.isSet(2) }">
-				<a href="" ng-click="tab.setTab(2)"  class="tb">Lista de Productos</a>
+				<a href="" ng-click="tab.setTab(2)"  ng-click= "refresh()" class="tb">Lista de Productos</a>
 			</li>
 	</ul>
 	<!--Formulario para productos-->
 	<div ng-show="tab.isSet(1)" class="border-form-div">
-	   <label>Nombre:</label> <input class="form-control" ng-model="product.name"><BR><BR>
+	   <label>Nombre:</label> <input class="form-control" ng-model="product.item"><BR><BR>
 	   <label>Precio:</label> <input class="form-control" ng-model="product.price"><BR><BR>
        <label>Shipping:</label> <input class="form-control"ng-model="product.shipping"><BR>
 	   <label>Vendedor:</label> <input class="form-control" ng-model="product.seller">
@@ -47,20 +47,26 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="product in products | orderBy:'-price'">
-				<td>{{product.name}}</td>
+				<td>{{product.item}}</td>
 				<td>{{product.price | currency}}</td>
-				<td>{{product.shipping}}</td>
+ 				<td>{{product.shipping}}</td>
 				<td>{{product.seller}}</td>
 				<td>{{product.stock}}</td>
+				<td> <a href="" ng-click="tab.setTab(3)" ng-click="getProduct(product)" class="tb" > Comentar</a></td>
 			</tr>
 		</tbody>
 	</table>
-	 <a href=""> Comentarios</a>
+	
    </div>
-
-   <div>
-	<textarea name="comentarios" rows="10" cols="40" ng-model="comment">Escribe aquí tus comentarios</textarea>
-
-	</div>
+   <div ng-show="tab.isSet(3)" class="border-form-div" >
+      <label>Nombre</label> {{product.item}}<br>
+      <label>Precio</label> {{product.price}}<br>
+      <label>Shipping</label> {{product.shipping}}<br>
+      <label>Vendedor</label> {{product.seller}}<br>
+      <label>Stock</label> {{product.stock}}<br>
+	  <textarea name="comentarios" rows="3" cols="30" ng-model="product.comment">Escribe aquí tus comentarios</textarea>
+	  <button ng-click = "addComment()" class="btn btn-primary">Comentar</button>
+  </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "flvStore">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="style.css" />
+       <script type="text/javascript" src="angular.min.js"></script>
+       <script type="text/javascript" src="app.js"></script>
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+       </script>
+</head>
+<body ng-controller = "loginCtrl" >
+<img src="./images/logo.JPG" alt="logo">
+  <div ng-controller="TabController as tab" class="container">
+   <ul class="nav nav-pills">
+      <li ng-class="{ active:tab.isSet(1) }">
+        <a href="" ng-click="tab.setTab(1)" class="tb">Ingresar</a>
+      </li>
+      <li ng-class="{ active:tab.isSet(2) }">
+        <a href="" ng-click="tab.setTab(2)"  class="tb">Registrar</a>
+      </li>
+  </ul>
+  <div ng-show="tab.isSet(1)" class="border-form-div">
+      <h1>Ingresar</h1>
+       <label>Correo</label><input type = "email" ng-model = "user.email" class="form-control"><br>
+       <label>Password</label><input type = "password" ng-model = "user.password" class="form-control"><br>
+       <button ng-click = "login()"  class ='btn btn-primary'>Iniciar Sesion</button>
+
+  </div>
+  <div ng-show="tab.isSet(2)" class="list-group-item" >
+          <h1>Registrar</h1>
+      <label>Nombre</label><input type = "text" ng-model = "nombre" class="form-control"><br>
+      <label>Apellido</label><input type= "text" ng-model = "apellido" class="form-control"><br>
+      <label>Correo</label><input type="email" ng-model = "correo" class = "form-control"><br>
+      <label>Password</label><input type="password" ng-model = "pass" class="form-control"><br>
+      <label>Confirmacion de Password</label><input type="password" ng-model = "pass2" class="form-control">
+      <br>
+      <button ng-click = "signup()"  class ='btn btn-primary'>Iniciar Sesion</button>
+   </div>
+  </div>
+  
+</body>
+</html>
